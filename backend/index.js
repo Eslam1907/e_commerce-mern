@@ -1,15 +1,22 @@
-const port =process.env.PORT || 4000;
+const port =process.env.PORT || 4001;
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const multer = require("multer");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+const cloudinary = require("cloudinary").v2
 const path = require("path");
 const { type } = require("os");
 const { Console, error } = require("console");
 app.use(express.json());
 app.use(cors());
+
+cloudinary.config({ 
+  cloud_name: 'doa2fklhw', 
+  api_key: '736168926758839', 
+  api_secret: 'UGImel9tKSBgc7VA52gpYITSJac' 
+});
 
 mongoose.connect(
   "mongodb://EcommerceMern:user123@ac-plx0fcb-shard-00-00.gglovl8.mongodb.net:27017,ac-plx0fcb-shard-00-01.gglovl8.mongodb.net:27017,ac-plx0fcb-shard-00-02.gglovl8.mongodb.net:27017/ecomm0mern?ssl=true&replicaSet=atlas-34rd2o-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0"
@@ -30,16 +37,31 @@ const storage = multer.diskStorage({
     );
   },
 });
+
 const upload = multer({ storage: storage });
 
 // creating endpoint for image
 app.use("/images", express.static("upload/images"));
 
 app.post("/upload/", upload.single("product"), (req, res) => {
-  res.json({
-    success: 1,
-    image_url: `https://e-commerce-mern-2-xjic.onrender.com//images/${req.file.filename}`,
-  });
+  cloudinary.uploader.upload(req.file.path ,(err, result)=>{
+    if (err) {
+      console.log(err);
+      return res.status(500).json({
+        success:false,
+        message:"Error"
+      })
+      }
+      res.status(200).json({
+        success:true,
+        message:"uploaded",
+        image_url: result.url,
+      })
+    
+        
+       
+    
+  })
 });
 // schema for creating products
 
