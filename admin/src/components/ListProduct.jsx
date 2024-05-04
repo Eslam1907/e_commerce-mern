@@ -3,7 +3,7 @@ import { TbTrash } from "react-icons/tb";
 function ListProduct() {
   const [allProduct, setAllProduct] = useState([]);
   const fetchUrl = async () => {
-    await fetch("http://localhost:4000/allproduct/")
+    await fetch("https://e-commerce-mern-3-d0ep.onrender.com/allproduct/")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -16,7 +16,7 @@ function ListProduct() {
   }, []);
 
   const Remove_Product = async (id) => {
-    await fetch("http://localhost:4000/removeproduct/", {
+    await fetch("https://e-commerce-mern-3-d0ep.onrender.com/removeproduct/", {
       method: "POST",
       headers: {
         Accept: "application/json",

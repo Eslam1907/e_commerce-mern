@@ -16,7 +16,7 @@ function Login() {
     console.log("Log in executed", formData);
     let fetchUrlSign;
 
-    await fetch("http://localhost:4000/login/", {
+    await fetch("https://e-commerce-mern-3-d0ep.onrender.com/login/", {
       method: "POST",
       headers: {
         Accept: "application/formData",
@@ -38,7 +38,7 @@ function Login() {
     console.log("signin executed", formData);
     let fetchUrlSign;
 
-    await fetch("http://localhost:4000/signup/", {
+    await fetch("https://e-commerce-mern-3-d0ep.onrender.com/signup/", {
       method: "POST",
       headers: {
         Accept: "application/formData",

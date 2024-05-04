@@ -6,7 +6,7 @@ function Popular() {
 const [popularproducts, setPopularproducts] = useState([])
 
 useEffect(()=>{
-fetch("http://localhost:4000/popularproducts/").then((res)=>res.json()).then((data)=>setPopularproducts(data))
+fetch("https://e-commerce-mern-3-d0ep.onrender.com/popularproducts/").then((res)=>res.json()).then((data)=>setPopularproducts(data))
 },[])
   return (
     <section >
