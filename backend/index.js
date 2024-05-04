@@ -38,7 +38,7 @@ app.use("/images", express.static("upload/images"));
 app.post("/upload/", upload.single("product"), (req, res) => {
   res.json({
     success: 1,
-    image_url: `http://localhost:${port}/images/${req.file.filename}`,
+    image_url: `https://e-commerce-mern-2-xjic.onrender.com//images/${req.file.filename}`,
   });
 });
 // schema for creating products
