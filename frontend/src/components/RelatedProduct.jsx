@@ -3,7 +3,9 @@ import { useEffect, useState } from "react"
 import Item from "./Item"
 
 function RelatedProduct() {
+
     const [popularproducts, setPopularproducts] = useState([])
+    
 
 useEffect(()=>{
 fetch("https://e-commerce-mern-4.onrender.com/popularproducts/").then((res)=>res.json()).then((data)=>setPopularproducts(data))
