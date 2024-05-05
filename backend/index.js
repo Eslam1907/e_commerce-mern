@@ -246,6 +246,7 @@ app.get("/popularproducts", async (req, res) => {
   res.send(popularproducts);
 });
 
+
 // creating middleware to fetch user
 
 const fetchUser = async (req, res, next) => {

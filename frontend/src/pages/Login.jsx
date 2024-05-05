@@ -16,7 +16,7 @@ function Login() {
     console.log("Log in executed", formData);
     let fetchUrlSign;
 
-    await fetch("https://e-commerce-mern-3-d0ep.onrender.com/login/", {
+    await fetch("https://e-commerce-mern-4.onrender.com/login/", {
       method: "POST",
       headers: {
         Accept: "application/formData",
@@ -38,7 +38,7 @@ function Login() {
     console.log("signin executed", formData);
     let fetchUrlSign;
 
-    await fetch("https://e-commerce-mern-3-d0ep.onrender.com/signup/", {
+    await fetch("https://e-commerce-mern-4.onrender.com/signup/", {
       method: "POST",
       headers: {
         Accept: "application/formData",

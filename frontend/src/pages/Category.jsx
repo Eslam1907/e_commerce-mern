@@ -4,13 +4,25 @@
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 // import all_products from "../assets/all_products"
 import Item from "../components/Item";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/Shopcontext";
 import { motion } from "framer-motion-3d";
+import {Bars} from "react-loader-spinner"
 
 function Category({ category, banner }) {
   const { all_products } = useContext(ShopContext);
+  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1000);
+     
+    
+  }, [])
+  
   return (
+
     <section className=" max_padd_container py-12 my-5 xl:py-28 ">
       <div>
         <div className="">
@@ -25,7 +37,18 @@ function Category({ category, banner }) {
             <MdOutlineKeyboardArrowDown />
           </div>
         </div>
-        <div className="flex md:justify-between xs:justify-center sm:justify-center gap-x-7 flex-wrap gap-y-8">
+        {loading ?<div className=" text-center flexCenter ">
+          <Bars
+        
+  height="70"
+  width="70"
+  color="#4fa94d"
+  ariaLabel="bars-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  visible={true}
+  />
+        </div> :  <div className="flex md:justify-between xs:justify-center sm:justify-center gap-x-7 flex-wrap gap-y-8">
           {all_products.map((item) => {
             if (category === item.category) {
               return (
@@ -44,7 +67,8 @@ function Category({ category, banner }) {
               );
             }
           })}
-        </div>
+        </div> }
+      
         <div className=" text-center mt-20">
           <button className="btn_dark_rounded">Load more</button>
         </div>

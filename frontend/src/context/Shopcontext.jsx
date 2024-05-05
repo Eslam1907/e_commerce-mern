@@ -1,29 +1,31 @@
 import { createContext, useEffect } from "react";
 import PropTypes from "prop-types"; // استيراد PropTypes
-import all_products from "../assets/all_products";
+// import all_products from "../assets/all_products";
 import { useState } from "react";
 
 export const ShopContext = createContext(null);
 
-const getDefaultCart = () => {
+
+
+const ShopContextProvider = (props) => {
+const [all_products, setAll_products] = useState([]);
+  const getDefaultCart = () => {
   let cart = {};
   for (let index = 0; index < all_products.length + 1; index++) {
     cart[index] = 0;
   }
   return cart;
 };
-
-const ShopContextProvider = (props) => {
   const [cartItem, setCartItem] = useState(getDefaultCart());
-  const [all_products, setAll_products] = useState([]);
+  
  
   useEffect(() => {
-    fetch("https://e-commerce-mern-3-d0ep.onrender.com/allproduct/")
+    fetch("https://e-commerce-mern-4.onrender.com/allproduct/")
       .then((res) => res.json())
       .then((data) => setAll_products(data));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-mern-3-d0ep.onrender.com/getcart", {
+      fetch("https://e-commerce-mern-4.onrender.com/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -40,7 +42,7 @@ const ShopContextProvider = (props) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-mern-3-d0ep.onrender.com/addtocart", {
+      fetch("https://e-commerce-mern-4.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -56,7 +58,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://e-commerce-mern-3-d0ep.onrender.com/removefromcart", {
+      fetch("https://e-commerce-mern-4.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",

@@ -25,7 +25,7 @@ function AddProduct() {
     let formData = new FormData()
     formData.append("product" , image)
 
-    await fetch ('https://e-commerce-mern-3-d0ep.onrender.com/upload', {
+    await fetch ('https://e-commerce-mern-4.onrender.com/upload', {
       method:"POST",
       headers:{
         Accept: 'application/json',
@@ -37,7 +37,7 @@ if(responseData.success){
   product.image= responseData.image_url
 
   console.log(product);
-  await fetch('https://e-commerce-mern-3-d0ep.onrender.com/addproduct', {
+  await fetch('https://e-commerce-mern-4.onrender.com/addproduct', {
     method:"POST",
     headers:{
       Accept: 'application/json',
